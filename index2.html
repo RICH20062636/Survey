@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information - Academic Information</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@500&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://www.transparenttextures.com/patterns/hexellence.png'), linear-gradient(to right, #dcdde1, #7f8c8d);
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            height: 80vh;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #7f8c8d;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        input, select, button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ecf0f1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, button:focus {
+            outline: none;
+            border-color: #7f8c8d;
+            box-shadow: 0 0 10px rgba(127, 140, 141, 0.5);
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        button {
+            width: 100%;
+            background-color: #7f8c8d;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5d6d7e;
+            box-shadow: 0px 10px 20px rgba(127, 140, 141, 0.3);
+        }
+
+        .back-button {
+            background-color: #f39c12;
+            color: white;
+            width: 50%;
+            font-weight: bold;
+        }
+
+        .back-button:hover {
+            background-color: #e67e22;
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                height: 90vh;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Academic Information</h2>
+    <form id="academicForm" action="qrCode.html" method="GET">
+        
+        <!-- Question 21: Academic Status -->
+        <label for="academicStatus">Academic Status:</label>
+        <select id="academicStatus" name="academicStatus" required>
+            <option value="Regular">Regular</option>
+            <option value="Irregular">Irregular</option>
+        </select>
+
+        <!-- Question 22: Preferred College/University -->
+        <label for="preferredCollege">Preferred College/University (for future plans):</label>
+        <input type="text" id="preferredCollege" name="preferredCollege" placeholder="Enter your preferred college/university" required>
+
+        <!-- Question 23: Preferred Course/Program -->
+        <label for="preferredCourse">Preferred Course/Program (for college):</label>
+        <input type="text" id="preferredCourse" name="preferredCourse" placeholder="Enter your preferred course/program" required>
+
+        <!-- Question 24: Extracurricular Activities -->
+        <label for="extracurricularActivities">Are you involved in any extracurricular activities?</label>
+        <select id="extracurricularActivities" name="extracurricularActivities" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <!-- Question 25: Organizations/Clubs -->
+        <label for="organizations">List any organizations or clubs you are part of in school:</label>
+        <input type="text" id="organizations" name="organizations" placeholder="Enter the names of organizations/clubs" required>
+
+        <!-- Question 26: Scholar Status -->
+        <label for="scholarStatus">Are you currently a scholar?</label>
+        <select id="scholarStatus" name="scholarStatus" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <!-- Question 27: Type of Scholarship -->
+        <label for="scholarshipType">If yes, what type of scholarship do you hold?</label>
+        <input type="text" id="scholarshipType" name="scholarshipType" placeholder="Enter the type of scholarship" required>
+
+        <!-- Question 28: Favorite Subject -->
+        <label for="favoriteSubject">What is your favorite subject in school?</label>
+        <input type="text" id="favoriteSubject" name="favoriteSubject" placeholder="Enter your favorite subject" required>
+
+        <!-- Question 29: Least Favorite Subject -->
+        <label for="leastFavoriteSubject">What is your least favorite subject in school?</label>
+        <input type="text" id="leastFavoriteSubject" name="leastFavoriteSubject" placeholder="Enter your least favorite subject" required>
+
+        <!-- Question 30: School Training/Seminar Attendance -->
+        <label for="attendedTraining">Have you attended any school training or seminars in the past year?</label>
+        <select id="attendedTraining" name="attendedTraining" required>
+            <option value="Yes">Yes</option>
+            <option value="No">No</option>
+        </select>
+
+        <button type="submit">Submit and Generate QrCode</button>
+        <a href="instruction.html" class="button">Back</a>
+    </form>
+</div>
+
+<script>
+    // Function to save data in real-time
+    const formElements = document.querySelectorAll('#academicForm input, #academicForm select');
+    
+    formElements.forEach(element => {
+        // Load saved data from localStorage on page load
+        if(localStorage.getItem(element.name)) {
+            element.value = localStorage.getItem(element.name);
+        }
+
+        // Save data to localStorage as the user types or changes selections
+        element.addEventListener('input', function() {
+            localStorage.setItem(element.name, element.value);
+        });
+    });
+
+    // Save form data when submitted (to retain for QR Code page)
+    document.getElementById('academicForm').onsubmit = function(e) {
+        e.preventDefault();
+        const formData = new FormData(this);
+        formData.forEach((value, key) => localStorage.setItem(key, value));
+        window.location.href = 'qrCode.html';
+    };
+</script>
+
+
+</body>
+</html>

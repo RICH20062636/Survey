@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Generated QR Code</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <style>
+        /* Monochrome Aesthetic Styling */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #333333 0%, #666666 100%);
+            color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            max-width: 500px;
+            width: 90%;
+            padding: 40px;
+            background: rgba(20, 20, 20, 0.9);
+            border-radius: 15px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.2);
+            position: relative;
+            overflow: hidden;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 28px;
+            color: #e0e0e0;
+            margin-bottom: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        p {
+            font-size: 16px;
+            color: #cccccc;
+            margin-bottom: 20px;
+        }
+
+        #qrcode {
+            margin: 20px auto;
+            padding: 10px;
+            background: #ffffff;
+            border: 2px solid #555555;
+            border-radius: 8px;
+            width: fit-content;
+        }
+
+        button {
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            color: #ffffff;
+            background: #444444;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        button:hover {
+            transform: scale(1.05);
+            background: #555555;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .copy-button {
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Your QR Code</h2>
+        <p>Scan the QR Code to access your information</p>
+        <div id="qrcode"></div>
+        <button onclick="window.location.href='index.html'">Back to Form</button>
+        <button class="copy-button" id="copyBtn">Copy Information</button>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Retrieve only data from index.html and index2.html fields in localStorage
+            const studentInfo = {
+                "Full Name": localStorage.getItem('fullName'),
+                "Date of Birth": localStorage.getItem('dob'),
+                "Birth Place": localStorage.getItem('birthPlace'),
+                "Gender": localStorage.getItem('gender'),
+                "Nationality": localStorage.getItem('nationality'),
+                "Civil Status": localStorage.getItem('civilStatus'),
+                "Address": localStorage.getItem('address'),
+                "Postal Code": localStorage.getItem('postalCode'),
+                "Contact Number": localStorage.getItem('contactNumber'),
+                "Email": localStorage.getItem('email'),
+                "Emergency Contact": localStorage.getItem('emergencyContact'),
+                "Emergency Contact Number": localStorage.getItem('emergencyContactNumber'),
+                "Relationship to Emergency Contact": localStorage.getItem('relationshipToEmergency'),
+                "Student ID": localStorage.getItem('studentID'),
+                "Grade Level": localStorage.getItem('gradeLevel'),
+                "Section": localStorage.getItem('section'),
+                "Height": localStorage.getItem('height'),
+                "Weight": localStorage.getItem('weight'),
+                "Academic Status": localStorage.getItem('academicStatus'),
+                "Preferred College": localStorage.getItem('preferredCollege'),
+                "Preferred Course": localStorage.getItem('preferredCourse'),
+                "Favorite Subject": localStorage.getItem('favoriteSubject'),
+                "Least Favorite Subject": localStorage.getItem('leastFavoriteSubject')
+            };
+
+            // Format data into a readable string with labels and line breaks
+            const formattedInfo = Object.entries(studentInfo)
+                .map(([key, value]) => `${key}: ${value || 'N/A'}`)
+                .join('\n');
+
+            // Generate QR code with the formatted information
+            new QRCode(document.getElementById("qrcode"), {
+                text: formattedInfo,
+                width: 250,  // Set width
+                height: 250, // Set height
+                correctLevel: QRCode.CorrectLevel.L
+            });
+
+            // Copy information to clipboard
+            document.getElementById("copyBtn").addEventListener("click", function() {
+                navigator.clipboard.writeText(formattedInfo).then(function() {
+                    alert("Information copied to clipboard!");
+                }).catch(function(error) {
+                    console.error("Error copying text: ", error);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

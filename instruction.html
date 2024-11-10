@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Information Form</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500&family=Playfair+Display:wght@500&display=swap');
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-image: url('https://www.transparenttextures.com/patterns/hexellence.png'), linear-gradient(to right, #dcdde1, #7f8c8d);
+            margin: 0;
+            padding: 0;
+            color: #2c3e50;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 500px;
+            height: 80vh;
+            overflow-y: auto;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 15px;
+            padding: 30px;
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.1);
+            border: 1px solid #7f8c8d;
+            box-sizing: border-box;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            text-align: center;
+            color: #34495e;
+            margin-bottom: 20px;
+        }
+
+        input, select, button {
+            width: 80%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 8px;
+            border: 1px solid #ecf0f1;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            transition: 0.3s;
+        }
+
+        input:focus, select:focus, button:focus {
+            outline: none;
+            border-color: #7f8c8d;
+            box-shadow: 0 0 10px rgba(127, 140, 141, 0.5);
+        }
+
+        label {
+            margin-top: 10px;
+            display: block;
+            font-weight: bold;
+            color: #2c3e50;
+        }
+
+        button {
+            width: 100%;
+            background-color: #7f8c8d;
+            color: white;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            transition: 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #5d6d7e;
+            box-shadow: 0px 10px 20px rgba(127, 140, 141, 0.3);
+        }
+
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin-top: 10px;
+            position: relative;
+        }
+
+        .checkbox-container input[type="checkbox"] {
+            margin-right: 10px;
+            width: 18px;
+            height: 18px;
+        }
+
+        .privacy-notice {
+            font-size: 0.9em;
+            color: #6c6c6c;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 0.8em;
+            position: absolute;
+            left: 30px;
+            top: 30px;
+            display: none; /* Hidden by default */
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                width: 95%;
+                height: 90vh;
+                padding: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Student Information Form</h2>
+    <form id="studentForm" action="index2.html" method="GET">
+
+        <!-- Personal Information (Basic Identity Data) -->
+        
+        <!-- Full Name (First Name, Middle Name, Last Name) -->
+        <label for="fullName">Full Name (First Name, Middle Name, Last Name):</label>
+        <input type="text" id="fullName" name="fullName" placeholder="Enter your full name" required>
+
+        <!-- Date of Birth -->
+        <label for="dob">Date of Birth (MM/DD/YYYY):</label>
+        <input type="date" id="dob" name="dob" required>
+
+        <!-- Place of Birth (City, Province/State, Country) -->
+        <label for="birthPlace">Place of Birth (City, Province/State, Country):</label>
+        <input type="text" id="birthPlace" name="birthPlace" placeholder="Enter your place of birth" required>
+
+        <!-- Gender -->
+        <label for="gender">Gender:</label>
+        <select id="gender" name="gender" required>
+            <option value="Male">Male</option>
+            <option value="Female">Female</option>
+            <option value="Prefer not to say">Prefer not to say</option>
+        </select>
+
+        <!-- Nationality -->
+        <label for="nationality">Nationality:</label>
+        <input type="text" id="nationality" name="nationality" placeholder="Enter your nationality" required>
+
+        <!-- Civil Status -->
+        <label for="civilStatus">Civil Status:</label>
+        <select id="civilStatus" name="civilStatus" required>
+            <option value="Single">Single</option>
+            <option value="Married">Married</option>
+            <option value="Separated">Separated</option>
+            <option value="Widowed">Widowed</option>
+        </select>
+
+        <!-- Home Address (Street, Barangay, City, Province) -->
+        <label for="address">Home Address (Street, Barangay, City, Province):</label>
+        <input type="text" id="address" name="address" placeholder="Enter your home address" required>
+
+        <!-- Postal Code -->
+        <label for="postalCode">Postal Code:</label>
+        <input type="text" id="postalCode" name="postalCode" placeholder="Enter your postal code" required>
+
+        <!-- Contact Number -->
+        <label for="contactNumber">Contact Number (Mobile):</label>
+        <input type="tel" id="contactNumber" name="contactNumber" placeholder="Enter your mobile contact number" required>
+
+        <!-- Email Address -->
+        <label for="email">Email Address:</label>
+        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
+
+        <!-- Emergency Contact Person -->
+        <label for="emergencyContact">Emergency Contact Person (Name):</label>
+        <input type="text" id="emergencyContact" name="emergencyContact" placeholder="Enter the name of emergency contact" required>
+
+        <!-- Emergency Contact Number -->
+        <label for="emergencyContactNumber">Emergency Contact Number:</label>
+        <input type="tel" id="emergencyContactNumber" name="emergencyContactNumber" placeholder="Enter emergency contact number" required>
+
+        <!-- Relationship to Emergency Contact -->
+        <label for="relationshipToEmergency">Relationship to Emergency Contact:</label>
+        <input type="text" id="relationshipToEmergency" name="relationshipToEmergency" placeholder="Enter your relationship to emergency contact (e.g., Parent, Sibling)" required>
+
+        <!-- Religion (Optional) -->
+        <label for="religion">Religion (Optional):</label>
+        <input type="text" id="religion" name="religion" placeholder="Enter your religion (optional)">
+
+        <!-- Student ID Number -->
+        <label for="studentID">Student ID Number:</label>
+        <input type="text" id="studentID" name="studentID" placeholder="Enter your student ID number" required>
+
+        <!-- Grade Level -->
+        <label for="gradeLevel">Grade Level:</label>
+        <input type="text" id="gradeLevel" name="gradeLevel" placeholder="Enter your grade level" required>
+
+        <!-- Section -->
+        <label for="section">Section:</label>
+        <input type="text" id="section" name="section" placeholder="Enter your section" required>
+
+        <!-- Height -->
+        <label for="height">Height (cm or ft):</label>
+        <input type="text" id="height" name="height" placeholder="Enter your height" required>
+
+        <!-- Weight -->
+        <label for="weight">Weight (kg or lbs):</label>
+        <input type="text" id="weight" name="weight" placeholder="Enter your weight" required>
+
+        <!-- Blood Type (Optional) -->
+        <label for="bloodType">Blood Type (Optional):</label>
+        <input type="text" id="bloodType" name="bloodType" placeholder="Enter your blood type (optional)">
+        
+        <!-- Checkbox for Terms and Privacy Policy -->
+        <div class="checkbox-container">
+            <input type="checkbox" id="termsCheckbox">
+            <label for="termsCheckbox">I accept the terms and privacy policy</label>
+            <span class="error-message" id="checkboxError">* Please check this box to proceed</span>
+        </div>
+        
+        <p class="privacy-notice">
+            Privacy Protection Notice: Your privacy is our priority. The information you provide on this form will be securely sent to your Gmail account and will not be stored on our servers. We do not have access to your personal data or any information submitted.
+        </p>
+
+        <div class="button-group">
+            <a href="index.html" class="button">Back</a>
+            <button type="submit" id="nextButton">Next</button>
+        </div>
+    </form>
+</div>
+
+<script>
+    // Handle form submission validation
+    document.getElementById('studentForm').onsubmit = function(e) {
+        e.preventDefault();
+        
+        const requiredFields = document.querySelectorAll('#studentForm [required]');
+        let isValid = true;
+        
+        requiredFields.forEach(field => {
+            if (!field.value.trim()) {
+                isValid = false;
+                field.style.borderColor = 'red';
+            } else {
+                field.style.borderColor = '#ecf0f1';
+            }
+        });
+
+        // Check if the terms checkbox is checked
+        const termsCheckbox = document.getElementById('termsCheckbox');
+        const checkboxError = document.getElementById('checkboxError');
+        
+        if (!termsCheckbox.checked) {
+            checkboxError.style.display = 'inline';
+            isValid = false;
+        } else {
+            checkboxError.style.display = 'none';
+        }
+
+        // If all validations are met, submit the form
+        if (isValid) {
+            const formData = new FormData(this);
+            formData.forEach((value, key) => localStorage.setItem(key, value));
+            window.location.href = 'index2.html';
+        } else {
+            alert('Please fill in all required fields.');
+        }
+    };
+
+    // Populate form with saved data if available
+    window.onload = function() {
+        const form = document.getElementById('studentForm');
+        const formElements = form.elements;
+
+        for (let i = 0; i < formElements.length; i++) {
+            const field = formElements[i];
+            const savedValue = localStorage.getItem(field.name);
+
+            if (savedValue) {
+                if (field.type === 'radio' || field.type === 'checkbox') {
+                    if (field.value === savedValue) {
+                        field.checked = true;
+                    }
+                } else {
+                    field.value = savedValue;
+                }
+            }
+        }
+    };
+</script>
+
+</body>
+</html>
